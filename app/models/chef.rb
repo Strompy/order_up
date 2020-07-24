@@ -2,14 +2,12 @@ class Chef <ApplicationRecord
   validates_presence_of :name
   has_many :dishes
 
-  def ingredients
-    @list = []
-    dishes.each do |dish|
-       dish.ingredients.reduce([]) do |list, ingredient|
-        @list << ingredient
-        @list
-      end
-    end
-    @list
+  def fav_ingredients
+    dishes.joins(:ingredients).distinct.pluck('ingredients.name')
+  end
+
+  def popular
+    dishes.joins(:ingredients).select('ingredients.name').limit(3)
+    # require "pry"; binding.pry
   end
 end
