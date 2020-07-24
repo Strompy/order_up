@@ -24,6 +24,6 @@ RSpec.describe "Chef Show Page" do
     expect(page).to have_content(@ingredient1.name)
     expect(page).to have_content(@ingredient2.name)
     expect(page).to have_content(@ingredient3.name)
-    expect(page).to have_content(@chef.name)
+    expect(page).to have_content(@chef1.name)
   end
 end
